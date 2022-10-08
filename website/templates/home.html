@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block title %} Home{% endblock title %}
 
-{% block content %}This is the Home page{% endblock content %}
+{% block content %}
+
+
+<form method="POST">
+    <ul class="list-group list-group-flush" id='cars'>
+        {% for car in user.cars %}
+        <li class="list-group-item">{{car.owner}}</li>
+        <li class="list-group-item">{{car.model}}</li>
+        {% endfor %}
+
+    </ul>
+    <h1 align="center">Register a owner's car</h1>
+    <textarea class="form-control" name="car" id="car"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">
+            Register a car
+        </button>
+    </div>
+</form>
+
+{% endblock content %}

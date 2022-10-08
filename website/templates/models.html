@@ -4,13 +4,19 @@
 
 {% block content %}
 
-<form method="POST">
-    <ul class="list-group list-group-flush" id='models'>
-        {% for model in models %}
-        <li class="list-group-item">{{car.color_id.color}}</li>
-        {% endfor %}
-    </ul>
+<h1 align="center">Models allowed by the system</h1>
+<ul class="list-group list-group-flush" id='models'>
+    {% if models|length > 0 %}
+    Model:
+    {% for model in models %}
+    <li class="list-group-item">{{model.model}}</li>
+    {% endfor %}
+    {% else %}
+    <p align="center">List of allowed models is empty!</p>
+    {% endif %}
+</ul>
 
+<form method="POST">
     <br />
     <h1 align="center">Register car's model</h1>
     <textarea class="form-control" name="model" id="model"></textarea>

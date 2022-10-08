@@ -18,7 +18,7 @@ def home():
         else:
             new_car = Car(owner_id=current_user.id)
             db.session.add(new_car)
-            db.dession.commit()
+            db.session.commit()
             flash("Car registered!", category="success")
 
     return render_template("home.html", user=current_user)

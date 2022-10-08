@@ -3,10 +3,10 @@
 
 
 {% block content %}
-
+<h1 align="center">Colors allowed by the system</h1>
 <ul class="list-group list-group-flush" id='colors'>
-    {% for car in user.cars.colors %}
-    <li class="list-group-item">{{car.color_id.color}}</li>
+    {% for color in colors %}
+    <li class="list-group-item">{{color.color}}</li>
     {% endfor %}
 </ul>
 <br />

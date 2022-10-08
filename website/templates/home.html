@@ -1,25 +1,22 @@
-{% extends 'base.html' %}
-{% block title %} Home{% endblock title %}
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
 
 {% block content %}
 
+<br />
+<h1 align="center">Car's Owners</h1>
+<ul class="list-group list-group-flush" id='cars'>
+    {% for car in user.cars %}
+    <li class="list-group-item">{{car.owner}}</li>
+    <li class="list-group-item">{{car.model}}</li>
+    {% endfor %}
+</ul>
 
-<form method="POST">
-    <ul class="list-group list-group-flush" id='cars'>
-        {% for car in user.cars %}
-        <li class="list-group-item">{{car.owner}}</li>
-        <li class="list-group-item">{{car.model}}</li>
-        {% endfor %}
-
-    </ul>
-    <h1 align="center">Register a owner's car</h1>
-    <textarea class="form-control" name="car" id="car"></textarea>
+<form method="POST" action="">
+    <textarea name="car" id="car" class="form-control"></textarea>
     <br />
     <div align="center">
-        <button type="submit" class="btn btn-primary">
-            Register a car
-        </button>
+        <button type="submit" class="btn btn-primary" onClick="console.log('oioioi');">Add a car</button>
     </div>
 </form>
-
-{% endblock content %}
+{% endblock %}

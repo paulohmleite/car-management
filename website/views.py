@@ -7,11 +7,10 @@ from . import db
 views = Blueprint("views", __name__)
 
 
-@views.route("/", methods=["GET", "POST"])
+@views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-
-    if request.method == "POST":
+    if request.method == 'POST':
         car = request.form.get("car")
 
         if len(car) < 1:
@@ -23,3 +22,10 @@ def home():
             flash("Car registered!", category="success")
 
     return render_template("home.html", user=current_user)
+
+
+@login_required
+@views.route('/adm/')
+def adm():
+    return render_template("adm.html", user=current_user)
+

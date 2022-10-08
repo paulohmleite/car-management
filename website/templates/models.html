@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% block title %}Color Management{% endblock %}
+
+
+{% block content %}
+
+<form method="POST">
+    <ul class="list-group list-group-flush" id='models'>
+        {% for model in models %}
+        <li class="list-group-item">{{car.color_id.color}}</li>
+        {% endfor %}
+    </ul>
+
+    <br />
+    <h1 align="center">Register car's model</h1>
+    <textarea class="form-control" name="model" id="model"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">
+            Register a model
+        </button>
+    </div>
+</form>
+
+{% endblock content %}

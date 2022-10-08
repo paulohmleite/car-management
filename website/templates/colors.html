@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% block title %}Color Management{% endblock %}
+
+
+{% block content %}
+
+<ul class="list-group list-group-flush" id='colors'>
+    {% for car in user.cars.colors %}
+    <li class="list-group-item">{{car.color_id.color}}</li>
+    {% endfor %}
+</ul>
+<br />
+
+<h1 align="center">Register car's colors</h1>
+<form method="POST">
+    <textarea class="form-control" name="color" id="color"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary" onClick="console.log('oioioi');">
+            Register a color
+        </button>
+    </div>
+</form>
+
+{% endblock content %}

@@ -4,19 +4,7 @@
 {% block content %}
 
 <br />
-<h1 align="center">Car's Owners</h1>
-<ul class="list-group list-group-flush" id='cars'>
-    {% for car in user.cars %}
-    <li class="list-group-item">{{car.owner}}</li>
-    <li class="list-group-item">{{car.model}}</li>
-    {% endfor %}
-</ul>
+<h1 align="center">Nork-Town Car Management</h1>
+<p align="center">A car owner management system</p>
 
-<form method="POST" action="">
-    <textarea name="car" id="car" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary" onClick="console.log('oioioi');">Add a car</button>
-    </div>
-</form>
 {% endblock %}

@@ -15,7 +15,7 @@ class Model(db.Model):
 
 class Car(db.Model):
     id       = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     color_id = db.Column(db.Integer, db.ForeignKey("color.id"))
     model_id = db.Column(db.Integer, db.ForeignKey("model.id"))
 

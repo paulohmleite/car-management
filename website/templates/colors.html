@@ -3,12 +3,36 @@
 
 
 {% block content %}
+<br />
 <h1 align="center">Colors allowed by the system</h1>
-<ul class="list-group list-group-flush" id='colors'>
-    {% for color in colors %}
-    <li class="list-group-item">{{color.color}}</li>
-    {% endfor %}
-</ul>
+<table class="table table-hover">
+    <thead>
+        {% if colors|length == 0 %}
+        <td></td>
+        {% else %}
+        <td></td>
+        <th scope="col">Actions</th>
+        {% endif %}
+    </thead>
+    <tbody>
+        {% if colors|length == 0 %}
+        <tr class="table-active">
+            <td>None colors registered.</td>
+        </tr>
+        {% else %}
+        {% for color in colors %}
+        <tr class="table-active">
+            <td>{{color.color}}</td>
+            <td>
+                <button class="btn btn-danger" type="submit" class="close" onClick="deleteColor({{ color.id }})">
+                    <span aria-hidden="true">Delete</span>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+  </table>
 <br />
 
 <h1 align="center">Register car's colors</h1>

@@ -6,3 +6,13 @@ function deleteNote(noteId) {
       window.location.href = "/";
     });
   }
+
+
+function deleteColor(colorId) {
+    fetch("/delete-color", {
+      method: "POST",
+      body: JSON.stringify({ colorId: colorId }),
+    }).then((_res) => {
+      window.location.href = "/";
+    });
+  }

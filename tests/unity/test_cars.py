@@ -37,13 +37,6 @@ def app():
 
 
 class TestCar():
-    # yellow, blue, gray = create_basic_colors()
-
-    # @pytest.fixture
-    # def new_color():
-    #     color = Color('Yellow')
-
-    #     return color
 
     def test_pytest(self):
         '''
@@ -62,3 +55,10 @@ class TestCar():
     #     # y = Color.query.get(color='Yellow')
 
     #     assert color == 'Yellow'
+    def test_create_car_without_owners_gets_wrong(self):
+        '''
+        try to creates a car without owner
+        '''
+        
+
+        car = Car()

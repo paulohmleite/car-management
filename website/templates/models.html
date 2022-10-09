@@ -3,18 +3,26 @@
 
 
 {% block content %}
-
-<h1 align="center">Models allowed by the system</h1>
-<ul class="list-group list-group-flush" id='models'>
-    {% if models|length > 0 %}
-    Model:
-    {% for model in models %}
-    <li class="list-group-item">{{model.model}}</li>
-    {% endfor %}
-    {% else %}
-    <p align="center">List of allowed models is empty!</p>
-    {% endif %}
-</ul>
+<br />
+<h1 align="center">Colors allowed by the system</h1>
+<table class="table table-hover">
+    <thead>
+    </thead>
+    <tbody>
+        {% if models|length == 0 %}
+        <tr class="table-active">
+            <td>None models registered.</td>
+        </tr>
+        {% else %}
+        {% for model in models %}
+        <tr class="table-active">
+            <td>{{model.model}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+    </table>
+<br />
 
 <form method="POST">
     <br />

@@ -47,22 +47,24 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="/car-color">Car colors</a>
                 <a class="dropdown-item" href="/car-model">Car models</a>
-                <a class="dropdown-item" href="/car-ownership">Car owners</a>
+                <a class="dropdown-item" href="/adm/users/">Car owners</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/possible-sales">Possible sales</a>
               </div>
             </li>
             {% else %}
             <li class="nav-item">
-              <i class="fa fa-sign-in" aria-hidden="true"></i>
               <a class="nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/sign-up">Sign up</a>
+              <a class="nav-link" href="/sign-up"><i class="fa fa-user-plus" aria-hidden="true"></i>Sign up</a>
             </li>
             
             {% endif %}
           </ul>
+          <form class="d-flex">
+            <p>Welcome, {{user.first_name}}</p>
+          </form>
         </div>
       </div>
     </nav>

@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block title %}ADM - Cars Ownership{% endblock %} {%
+block content %}
+
+<br />
+<h1 align="center">Registered Users</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Actions</th>
+      <th scope="col">First name</th>
+      <th scope="col">Second name</th>
+      <th scope="col">Nº of cars</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for owner in owners %}
+    <tr class="table-active">
+      <th scope="row">
+        <button
+          class="btn btn-outline-primary rounded"
+          data-toggle="modal"
+          data-target="#edit{{owner.id}}"
+          data-id="{{owner.id}}"
+          href="/register-car/{{owner.id}}/"
+          placeholder="Add a new car"
+        >
+          <i class="fa fa-car" aria-hidden="true"> Add</i>
+        </button>
+      </th>
+      <td>{{owner.first_name}}</td>
+      <td>{{owner.last_name}}</td>
+      <td>{{owner.qtd_cars}}</td>
+    </tr>
+
+    <div class="modal fade" id="edit{{owner.id}}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateModalLabel">Register a car</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form method="POST" action="/register-car/{{owner.id}}">
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="color">Choose car color</label>
+                        <select class="form-control" id="color_car_id" name="color">
+                            {% if colors|length == 0 %}
+                            <option>No colors available.</option>
+                            {% else %}
+                            {% for color in colors %}
+                              <option value="{{ color.id }}">{{ color.color }}</option>
+                            {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                    <label for="model">Choose car model</label>
+                        <select class="form-control" id="model_car_id" name="model">
+                            {% if models|length == 0 %}
+                            <option>No models available.</option>
+                            {% else %}
+                            {% for model in models %}
+                              <option value="{{ model.id }}">{{ model.model }}</option>
+                              {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <br />
+              </div>
+    
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br />
+
+<h1 align="center">If it's your first car start here!</h1>
+<hr class="solid" />
+<form method="POST">
+  <div class="form-group">
+    <label for="first_name">First name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="first_name"
+      placeholder="Your first name"
+      name="first_name"
+    />
+  </div>
+  <br />
+
+  <div class="form-group">
+    <label for="last_name">Last name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="last_name"
+      placeholder="Your last name"
+      name="last_name"
+    />
+  </div>
+  <br />
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="name@example.com"
+      name="email"
+    />
+  </div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Register an owner</button>
+  </div>
+</form>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+{% endblock content %}

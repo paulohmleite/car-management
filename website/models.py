@@ -2,10 +2,33 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
+import flask_sqlalchemy
+
+# db = flask_sqlalchemy.SQLAlchemy()
+
 
 class Color(db.Model):
     id    = db.Column(db.Integer, primary_key=True)
     color = db.Column(db.String(20))
+
+    def get_all(model):
+        data = model.query.all()
+        return data
+
+    def add_instance(model, **kwargs):
+        instance = model(**kwargs)
+        db.session.add(instance)
+        db.session.commit_changes()
+
+    def delete_instance(model, id):
+        model.query.filter_by(id=id).delete()
+        db.session.commit_changes()
+    
+    def edit_instance(model, id, **kwargs):
+        instance = model.query.filter_by(id=id).all()[0]
+        for attr, new_value in kwargs.items():
+            setattr(instance, attr, new_value)
+        db.session.commit_changes()
 
 
 class Model(db.Model):

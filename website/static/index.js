@@ -13,6 +13,15 @@ function deleteColor(colorId) {
       method: "POST",
       body: JSON.stringify({ colorId: colorId }),
     }).then((_res) => {
-      window.location.href = "/";
+      window.location.href = "/car-color";
+    });
+  }
+
+  function deleteModel(modelId) {
+    fetch("/delete-model", {
+      method: "POST",
+      body: JSON.stringify({ modelId: modelId }),
+    }).then((_res) => {
+      window.location.href = "/car-model";
     });
   }

@@ -29,7 +29,11 @@ block content %}
       </th>
       <td>{{owner.first_name}}</td>
       <td>{{owner.last_name}}</td>
-      <td>{{owner.qtd_cars}}</td>
+      <td>
+        {{owner.qtd_cars}}
+        {% if owner.qtd_cars == 0 %}
+        <button class="btn btn-success"><i class="fa fa-exclamation" aria-hidden="true"></i></button></td>
+        {% endif %}
     </tr>
 
     <div class="modal fade" id="edit{{owner.id}}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">

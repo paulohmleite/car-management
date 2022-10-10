@@ -4,9 +4,15 @@
 
 {% block content %}
 <br />
-<h1 align="center">Colors allowed by the system</h1>
+<h1 align="center">Models allowed by the system</h1>
 <table class="table table-hover">
     <thead>
+        {% if models|length == 0 %}
+        <td></td>
+        {% else %}
+        <td></td>
+        <th scope="col">Actions</th>
+        {% endif %}
     </thead>
     <tbody>
         {% if models|length == 0 %}
@@ -17,6 +23,11 @@
         {% for model in models %}
         <tr class="table-active">
             <td>{{model.model}}</td>
+            <td>
+                <button class="btn btn-danger" type="submit" class="close" onClick="deleteModel({{ model.id }})">
+                    <span aria-hidden="true">Delete</span>
+                </button>
+            </td>
         </tr>
         {% endfor %}
         {% endif %}

@@ -22,8 +22,12 @@ def car_color_page():
     if request.method == "POST":
         color = request.form.get("color")
 
+        color_exist = Color.query.filter_by(color = color)
+
         if len(color) < 1:
             flash("Color is too short!", category="error")
+        if color_exist.count() > 0:
+            flash("Color already exists!", category="error")
         else:
             new_color = Color(color=color)
             db.session.add(new_color)
@@ -56,15 +60,34 @@ def car_model_page():
     if request.method == "POST":
         model = request.form.get("model")
 
+        model_exists = Model.query.filter_by(model=model)
+
         if len(model) < 1:
             flash("Model is too short!", category="error")
+        elif model_exists.count() > 0:
+            flash("The car model already exists!", category="error")
+        elif model == '':
+            flash("The car model cannot be empty!", category="error")
         else:
             new_model = Model(model=model)
             db.session.add(new_model)
             db.session.commit()
             flash("Model registered!", category="success")
 
-    return render_template('models.html', user=current_user)
+    return redirect(url_for('cars.car_model_page'))
+
+@cars.route('/delete-model', methods=['POST'])
+def delete_model():
+    model = json.loads(request.data)
+    modelId = model['modelId']
+    model = Model.query.get(modelId)
+    if model:
+        if current_user.is_admin or current_user.is_staff:
+            db.session.delete(model)
+            db.session.commit()
+
+    # return redirect(url_for('cars.car_model_page'))
+    return jsonify({})
 
 @login_required
 @cars.route("/adm/users/", methods=["GET", "POST"])
@@ -81,7 +104,7 @@ def register_owner():
             obj = {
                 'id': u.id,
                 'first_name': u.first_name,
-                'last_name': u.last_name,
+                'last_name': u.last_name or '',
                 'email': u.email,
                 'qtd_cars': len(u.cars)
             }
